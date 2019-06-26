@@ -5,8 +5,34 @@
     <title>Title</title>
 </head>
 <body>
-    <script type="text/javascript" src="back.js"></script>
-    <p id="helltext">Hello</p>
-    <button id = "id01" onclick="boop('clicked')">Click here</button>
+    <script type="text/javascript" src="cardsort.js"></script>
+    <h2><u>Cards:</u></h2>
+    <div id = "cards">
+
+    </div>
+    <div>
+        <h3>Make New Category:</h3>
+        <p>
+            New Card Name:
+            <label>
+                <input type="text" name="fname" id="input">
+            </label>
+        </p>
+        <button id = "id01" onclick="establishBox(document.getElementById('input').value)">Submit</button>
+    </div>
+    <div>
+        <h3>Add Card to Category:</h3>
+        <p>
+            Category Name:
+            <label>
+                <input type="text" name="fname" id="toAddto">
+            </label><br>
+            Card to Add:
+            <label>
+                <input type="text" name="fname" id="toAdd">
+            </label><br>
+        </p>
+        <button id = "id02" onclick="establishBoxContents(document.getElementById('toAddto').value,document.getElementById('toAdd').value)">Submit</button>
+    </div>
 </body>
 </html>
