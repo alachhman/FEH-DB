@@ -2,8 +2,7 @@ var boxes = [];
 function establishBox(name){
     boxes[boxes.length] = [name];
     var card = document.createElement("p");
-    card.id = name;
-    card.innerHTML = "<h3>" + name + "</h3>" + "<br>";
+    card.innerHTML = "<h3>" + name + "</h3>" + "<br>" + "<p id =\"" + name + "\">";
     document.getElementById('cards').appendChild(card);
 }
 function establishBoxContents(boxName, contents){
@@ -28,5 +27,19 @@ function establishBoxContents(boxName, contents){
     else{
         establishBox(boxName);
         establishBoxContents(boxName, contents);
+    }
+}
+var index = 0;
+var temper = [];
+function readFile(filedata){
+    var temp = filedata.split(",");
+    temper = temp;
+    index = 0;
+    //console.log(document.getElementsByName('fname'));
+    //console.log(document.getElementById(document.getElementsByName('fname').value).value);
+    for(var x in temper){
+        index = x;
+        document.getElementById("csvdata").innerHTML = document.getElementById("csvdata").innerHTML + "<li id = \"" + x + "\">" + temp[x].replace("\" \"", "") + "</li> " +
+            "<button id=\"" + x + "b\" onclick=\"establishBoxContents(document.getElementById('toAddto').value,document.getElementById(\'" + x + "\').innerText)\">Add</button>";
     }
 }

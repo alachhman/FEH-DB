@@ -10,6 +10,7 @@
     <div id = "cards">
 
     </div>
+    <hr>
     <div>
         <h3>Add Card to Category:</h3>
         <p>
@@ -19,10 +20,26 @@
             </label><br>
             Card to Add:
             <label>
-                <input type="text" name="fname" id="toAdd">
+                <input type="text" name="fname2" id="toAdd">
             </label><br>
         </p>
         <button id = "id02" onclick="establishBoxContents(document.getElementById('toAddto').value,document.getElementById('toAdd').value)">Submit</button>
+    </div>
+    <hr>
+    <div>
+        <p>
+            Data Input:
+            <label>
+                <input type = "text" name ="datainput" id="dataChooser">
+            </label><br>
+        </p>
+        <button id ="id03" enctype="multipart/form-data" onclick="readFile(document.getElementById('dataChooser').value)">Submit</button>
+    </div>
+    <hr>
+    <div>
+        <ul id = "csvdata">
+
+        </ul>
     </div>
 </body>
 </html>
