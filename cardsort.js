@@ -5,7 +5,20 @@ function establishBox(name){
     card.innerHTML = "<h3>" + name + "</h3>" + "<br>" + "<p id =\"" + name + "\">";
     document.getElementById('cards').appendChild(card);
 }
-function establishBoxContents(boxName, contents){
+function establishBoxContents(boxName, contents, todelete){
+    var category = document.getElementById(boxName);
+    if(category){
+        category.innerHTML = category.innerHTML + "[" + contents.replace("Add","") + "], ";
+        var element = document.getElementById(todelete);
+        element.parentNode.removeChild(element);
+    }
+    else{
+        establishBox(boxName);
+        establishBoxContents(boxName,contents,todelete)
+    }
+}
+/*
+function establishBoxContents(boxName, contents, todelete){
     var boxindex = -1;
     if(boxes){
         for(var x in boxes){
@@ -22,24 +35,23 @@ function establishBoxContents(boxName, contents){
             boxes[x][1].push(contents);
         }
         var card = document.getElementById(boxName);
-        card.innerHTML = card.innerHTML + "[" + contents + "], ";
+        card.innerHTML = card.innerHTML + "[" + contents.replace("Add","") + "], ";
+        document.getElementById('csvdata').removeChild(document.getElementById(todelete))
     }
     else{
         establishBox(boxName);
-        establishBoxContents(boxName, contents);
+        establishBoxContents(boxName, contents, todelete);
     }
-}
+}*/
 var index = 0;
 var temper = [];
 function readFile(filedata){
     var temp = filedata.split(",");
     temper = temp;
     index = 0;
-    //console.log(document.getElementsByName('fname'));
-    //console.log(document.getElementById(document.getElementsByName('fname').value).value);
     for(var x in temper){
         index = x;
-        document.getElementById("csvdata").innerHTML = document.getElementById("csvdata").innerHTML + "<li id = \"" + x + "\">" + temp[x].replace("\" \"", "") + "</li> " +
-            "<button id=\"" + x + "b\" onclick=\"establishBoxContents(document.getElementById('toAddto').value,document.getElementById(\'" + x + "\').innerText)\">Add</button>";
+        document.getElementById("csvdata").innerHTML = document.getElementById("csvdata").innerHTML + "<li id = \"" + x + "\">" + temp[x].replace("\" \"", "") + "" +
+            "<button id=\"" + x + "b\" onclick=\"establishBoxContents(document.getElementById('toAddto').value,document.getElementById(\'" + x + "\').innerText," + x + ")\">Add</button></li>";
     }
 }
